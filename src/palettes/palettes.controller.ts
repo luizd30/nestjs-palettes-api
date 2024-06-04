@@ -1,7 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { PalettesService } from './palettes.service';
 import { Palettes } from './palettes.entity';
-import { Throttle } from '@nestjs/throttler';
 
 @Controller('palettes')
 export class PalettesController {
@@ -10,5 +9,10 @@ export class PalettesController {
   @Get()
   async findAll(): Promise<Palettes[]> {
     return this.palettesService.findAll();
+  }
+
+  @Get(':id')
+  async findById(@Param('id') id: number): Promise<Palettes[]> {
+    return this.palettesService.findById(id);
   }
 }

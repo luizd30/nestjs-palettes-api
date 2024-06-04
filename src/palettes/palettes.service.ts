@@ -13,4 +13,8 @@ export class PalettesService {
   findAll(): Promise<Palettes[]> {
     return this.palettesRepository.find();
   }
+
+  findById(id: number): Promise<Palettes[]> {
+    return this.palettesRepository.find({ where: { id } });
+  }
 }
