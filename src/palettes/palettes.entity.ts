@@ -10,4 +10,7 @@ export class Palettes {
 
   @Column('text', { array: true })
   colors: string[];
+
+  @Column('text', { array: true })
+  tags: string[];
 }
