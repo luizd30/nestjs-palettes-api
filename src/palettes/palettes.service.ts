@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { palettes } from 'src/data';
-import { Palettes } from 'src/interfaces/palettes.interface';
+import { Repository } from 'typeorm';
+import { Palettes } from './palettes.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class PalettesService {
-  private readonly palettes: Palettes[] = palettes;
+  constructor(
+    @InjectRepository(Palettes)
+    private palettesRepository: Repository<Palettes>,
+  ) {}
 
-  findAll(): Palettes[] {
-    return this.palettes;
+  findAll(): Promise<Palettes[]> {
+    return this.palettesRepository.find();
   }
 }
