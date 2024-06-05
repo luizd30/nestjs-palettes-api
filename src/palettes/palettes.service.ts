@@ -10,11 +10,11 @@ export class PalettesService {
     private palettesRepository: Repository<Palettes>,
   ) {}
 
-  findAll(): Promise<Palettes[]> {
+  async findAll(): Promise<Palettes[]> {
     return this.palettesRepository.find();
   }
 
-  findById(id: number): Promise<Palettes[]> {
+  async findById(id: number): Promise<Palettes[]> {
     return this.palettesRepository.find({ where: { id } });
   }
 }
