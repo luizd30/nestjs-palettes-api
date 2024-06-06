@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { PalettesModule } from './palettes/palettes.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -28,11 +26,10 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
         },
       },
     }),
-    ThrottlerModule.forRoot([{ ttl: 60000, limit: 3 }]), //can do a request 3 times/minute
+    ThrottlerModule.forRoot([{ ttl: 60000, limit: 10 }]), //can do a request 3 times/minute
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
-    AppService,
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
